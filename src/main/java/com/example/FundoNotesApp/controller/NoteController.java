@@ -1,5 +1,6 @@
 package com.example.FundoNotesApp.controller;
 
+import com.example.FundoNotesApp.dto.ReminderDto;
 import com.example.FundoNotesApp.entity.Note;
 import com.example.FundoNotesApp.service.NoteService;
 import lombok.RequiredArgsConstructor;
@@ -37,5 +38,11 @@ public class NoteController {
     @PatchMapping("/{id}/trash")
     public Note trash(@PathVariable Long id) {
         return noteService.updateTrash(id);
+    }
+
+    @PostMapping("/reminder")
+    public String setReminder(@RequestBody ReminderDto dto) {
+        noteService.setReminder(dto);
+        return "Reminder sent to queue";
     }
 }
